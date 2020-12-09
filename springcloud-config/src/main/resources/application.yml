@@ -1,0 +1,24 @@
+server:
+  port: 10537
+spring:
+  application:
+    name: springcloud-config
+  boot:
+    admin:
+      client:
+        url: http://192.168.10.101:10536
+  #获取本地配置文件，本身支持：本地缓存、git远程、SVN
+  profiles:
+    active: native
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: classpath:config/
+eureka:
+  client:
+    service-url:
+      defaultZone: http://192.168.10.101:10535/eureka
+  instance:
+    prefer-ip-address: true       #当其他服务获取地址时提供ip而不是hostname
+    ip-address: 192.168.10.101    #指定自己的ip信息，不指定的话会自己寻找
